@@ -1,0 +1,479 @@
+  <!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>해외 영화에 등장한 서울시 장소_테마별_스핀오프팀</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        <style>
+            html, body, #mapid{
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id = 'mapid'>
+        </div>
+        <script>
+            var map = L.map('mapid').setView([37.5378, 127.0253], 11);
+            var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+                attribution:'&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors'
+            }).addTo(map);
+            var GoogleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+                maxZoom: 20,
+                subdomains:['mt0','mt1','mt2','mt3']
+            })
+            var GoogleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+                maxZoom: 20,
+                subdomains:['mt0','mt1','mt2','mt3']
+            })
+            var GoogleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+                maxZoom: 20,
+                subdomains:['mt0','mt1','mt2','mt3']
+            })
+            var GoogleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+                maxZoom: 20,
+                subdomains:['mt0','mt1','mt2','mt3']
+            })
+            var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                subdomains: 'abcd',
+                minZoom: 1,
+                maxZoom: 16,
+                ext: 'jpg'
+            });
+
+            var baseMaps = {
+                "GoogleStreetMap": GoogleStreets,
+                "GoogleSatelliteMap":GoogleSat,
+                "GoogleTerrain":GoogleTerrain,
+                "GoogleHybrid":GoogleHybrid,
+                "Watercolor":Stamen_Watercolor,
+                "OpenStreetMap":osm
+            };
+            
+            L.control.layers(baseMaps).addTo(map);
+  
+            var myIcon = L.Icon.extend({
+                options: {
+                shadowUrl: 'image/myicon_shadow.png',
+                iconSize:     [40, 62],
+                shadowSize:   [44, 22],
+                iconAnchor:   [23, 62],
+                shadowAnchor: [4, 22],
+                popupAnchor:  [0, -62]
+                }
+            });
+
+            var 관광TIcon = new myIcon({iconUrl: 'image/trip.png'});
+            문화TIcon = new myIcon({iconUrl: 'image/culture_t.png'});
+            이동TIcon = new myIcon({iconUrl: 'image/move.png'});
+            전개TIcon = new myIcon({iconUrl: 'image/story.png'});
+            사건TIcon = new myIcon({iconUrl: 'image/event.png'});
+            교통CIcon = new myIcon({iconUrl: 'image/traffic.png'});
+            문화CIcon = new myIcon({iconUrl: 'image/culture_c.png'});
+            판매CIcon = new myIcon({iconUrl: 'image/sale.png'});
+            업무CIcon = new myIcon({iconUrl: 'image/work.png'});
+            관광휴게CIcon = new myIcon({iconUrl: 'image/trip_relax.png'});
+            거리골목CIcon = new myIcon({iconUrl: 'image/street.png'});
+            역사CIcon = new myIcon({iconUrl: 'image/history.png'});
+            음식CIcon = new myIcon({iconUrl: 'image/food.png'});
+            의료CIcon = new myIcon({iconUrl: 'image/medical.png'});
+                
+
+                L.icon = function (options) {
+                    return new L.Icon(options);
+                };
+  
+
+     
+            var part_1 = L.layerGroup();
+            var part_2 = L.layerGroup();
+            var part_3 = L.layerGroup();  
+            var part_4 = L.layerGroup();  
+            var part_5 = L.layerGroup();  
+            var part_6 = L.layerGroup();  
+            var part_7 = L.layerGroup();
+            var part_8 = L.layerGroup();
+            var part_9 = L.layerGroup(); 
+            var part_10 = L.layerGroup(); 
+            var part_11 = L.layerGroup(); 
+            var part_12 = L.layerGroup(); 
+            var part_13 = L.layerGroup(); 
+            var part_14 = L.layerGroup();
+            
+              
+            
+            
+     
+            map.addLayer(part_1)
+            map.addLayer(part_2)
+            map.addLayer(part_3)
+            map.addLayer(part_4)
+            map.addLayer(part_5)
+            map.addLayer(part_6)
+            map.addLayer(part_7)
+            map.addLayer(part_8)
+            map.addLayer(part_9)
+            map.addLayer(part_10)
+            map.addLayer(part_11)
+            map.addLayer(part_12)
+            map.addLayer(part_13)
+            map.addLayer(part_14)
+            
+
+       
+            var overlays = {
+                "관광T": part_1,
+                "문화T": part_2,
+                "이동T": part_3,
+                "전개T": part_4,
+                "사건T": part_5,
+                "교통C": part_6,
+                "문화C": part_7,
+                "판매C": part_8,
+                "업무C": part_9,
+                "관광휴게C": part_10,
+                "거리골목C": part_11,
+                "역사C": part_12,
+                "음식C": part_13,
+                "의료C": part_14,
+                
+            };
+
+         
+            var ctr_mapLayers = L.control.layers(null, overlays, {collapsed:false, position:'topright'}).addTo(map);
+
+
+
+  
+        
+            var geodata =[
+
+{"type": "Feature", "properties": {"name": "Cafe연남동223-14", "class": "Location", "form": "point", "address": "null", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/Cafe연남동223-14", "theme": "사랑", "character": "음식", "district": "마포구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [126.92384, 37.56521]}},
+{"type": "Feature", "properties": {"name": "방산종합시장", "class": "Location", "form": "point", "address": "서울 중구 을지로33길 18-1", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/방산종합시장", "theme": "관광", "character": "판매", "district": "중구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [127.00079, 37.56845]}},
+{"type": "Feature", "properties": {"name": "여의도한강공원", "class": "Location", "form": "point", "address": "서울 영등포구 여의동로 330", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/여의도한강공원", "theme": "관광", "character": "관광_휴게", "district": "영등포구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [126.9358, 37.5257]}},
+{"type": "Feature", "properties": {"name": "여의도한강공원", "class": "Location", "form": "point", "address": "서울 영등포구 여의동로 330", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/여의도한강공원", "theme": "사건", "character": "관광_휴게", "district": "영등포구", "movie": "Colossal"}, "geometry": {"type": "Point", "coordinates": [126.9358, 37.5257]}},
+{"type": "Feature", "properties": {"name": "파크_하얏트_서울", "class": "Location", "form": "point", "address": "서울 강남구 테헤란로 606", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/파크_하얏트_서울", "theme": "가족", "character": "숙박", "district": "강남구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [127.06412, 37.50866]}},
+{"type": "Feature", "properties": {"name": "N서울타워", "class": "Location", "form": "point", "address": "서울 용산구 남산공원길 105", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/N서울타워", "theme": "그리움", "character": "관광_휴게", "district": "용산구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [126.98825, 37.5512]}},
+{"type": "Feature", "properties": {"name": "N서울타워", "class": "Location", "form": "point", "address": "서울 용산구 남산공원길 105", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/N서울타워", "theme": "전개", "character": "관광_휴게", "district": "용산구", "movie": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [126.98825, 37.5512]}},
+{"type": "Feature", "properties": {"name": "N서울타워", "class": "Location", "form": "point", "address": "서울 용산구 남산공원길 105", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/N서울타워", "theme": "가족", "character": "관광_휴게", "district": "용산구", "movie": "Unconditional_Love_-_AirAsiaPH"}, "geometry": {"type": "Point", "coordinates": [126.98825, 37.5512]}},
+{"type": "Feature", "properties": {"name": "라네즈_쇼룸", "class": "Location", "form": "point", "address": "서울특별시 중구 명동8길 8", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/라네즈_쇼룸", "theme": "문화", "character": "문화", "district": "중구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [126.98444, 37.56337]}},
+{"type": "Feature", "properties": {"name": "동대문디자인플라자", "class": "Location", "form": "point", "address": "서울 중구 을지로 281", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/동대문디자인플라자", "theme": "문화", "character": "문화", "district": "중구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [127.00981, 37.56701]}},
+{"type": "Feature", "properties": {"name": "동대문디자인플라자", "class": "Location", "form": "point", "address": "서울 중구 을지로 281", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/동대문디자인플라자", "theme": "전개", "character": "문화", "district": "중구", "movie": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [127.00981, 37.56701]}},
+{"type": "Feature", "properties": {"name": "세빛둥둥섬", "class": "Location", "form": "point", "address": "서울 서초구 올림픽대로 2085-14", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/세빛둥둥섬", "theme": "전개", "character": "문화", "district": "서초구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [126.99489, 37.51172]}},
+{"type": "Feature", "properties": {"name": "청담대교_북단램프", "class": "Location", "form": "point", "address": "서울 광진구 강변북로 68", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/청담대교_북단램프", "theme": "사건", "character": "교통", "district": "광진구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [127.0659, 37.53071]}},
+{"type": "Feature", "properties": {"name": "MBC사옥", "class": "Location", "form": "point", "address": "서울 마포구 성암로 267", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/MBC사옥", "theme": "사건", "character": "업무", "district": "마포구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [126.89052, 37.58109]}},
+{"type": "Feature", "properties": {"name": "강남운전면허시험장", "class": "Location", "form": "point", "address": "서울 강남구 테헤란로114길 23", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/강남운전면허시험장", "theme": "사건", "character": "자동차관련시설", "district": "강남구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [127.06747, 37.50786]}},
+{"type": "Feature", "properties": {"name": "탄천공영주차장", "class": "Location", "form": "point", "address": "서울 강남구 봉은사로114길 13", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/탄천공영주차장", "theme": "사건", "character": "자동차관련시설", "district": "강남구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [127.06928, 37.51296]}},
+{"type": "Feature", "properties": {"name": "동작대교_분기점", "class": "Location", "form": "point", "address": "null", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/동작대교_분기점", "theme": "사건", "character": "교통", "district": "동작구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [126.97514, 37.5053]}},
+{"type": "Feature", "properties": {"name": "문래창작촌", "class": "Location", "form": "point", "address": "서울 영등포구 도림로128가길 13-8", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/문래창작촌", "theme": "사건", "character": "거리_골목", "district": "영등포구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [126.8976, 37.51434]}},
+{"type": "Feature", "properties": {"name": "강남역", "class": "Location", "form": "point", "address": "서울 강남구 강남대로 396", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/강남역", "theme": "전개", "character": "교통", "district": "강남구", "movie": "Downsizing"}, "geometry": {"type": "Point", "coordinates": [127.02755, 37.4979]}},
+{"type": "Feature", "properties": {"name": "강남역", "class": "Location", "form": "point", "address": "서울 강남구 강남대로 396", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/강남역", "theme": "사건", "character": "교통", "district": "강남구", "movie": "The_Bourne_Legacy "}, "geometry": {"type": "Point", "coordinates": [127.02755, 37.4979]}},
+{"type": "Feature", "properties": {"name": "강남역", "class": "Location", "form": "point", "address": "서울 강남구 강남대로 396", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/강남역", "theme": "문화", "character": "교통", "district": "강남구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [127.02755, 37.4979]}},
+{"type": "Feature", "properties": {"name": "강남역", "class": "Location", "form": "point", "address": "서울 강남구 강남대로 396", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/강남역", "theme": "이동", "character": "교통", "district": "강남구", "movie": "More_Than_a_Game_sOs"}, "geometry": {"type": "Point", "coordinates": [127.02755, 37.4979]}},
+{"type": "Feature", "properties": {"name": "가락시장", "class": "Location", "form": "point", "address": "서울 송파구 양재대로 932", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/가락시장", "theme": "전개", "character": "판매", "district": "송파구", "movie": "Downsizing"}, "geometry": {"type": "Point", "coordinates": [127.1089, 37.49276]}},
+{"type": "Feature", "properties": {"name": "코엑스", "class": "Location", "form": "point", "address": "서울 송파구 양재대로 932", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/코엑스", "theme": "전개", "character": "문화", "district": "강남구", "movie": "The_Bourne_Legacy "}, "geometry": {"type": "Point", "coordinates": [127.05938, 37.51188]}},
+{"type": "Feature", "properties": {"name": "류니끄", "class": "Location", "form": "point", "address": "서울 강남구 신사동 520-1", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/류니끄", "theme": "전개", "character": "음식", "district": "강남구", "movie": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [127.02161, 37.52071]}},
+{"type": "Feature", "properties": {"name": "양반댁", "class": "Location", "form": "point", "address": "서울 종로구 인사동길 19-18 양반댁", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/양반댁", "theme": "관광", "character": "음식", "district": "종로구", "movie": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [126.98596, 37.57223]}},
+{"type": "Feature", "properties": {"name": "스파렉스", "class": "Location", "form": "point", "address": "서울 종로구 창신동 328-18", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/스파렉스", "theme": "문화", "character": "문화", "district": "종로구", "movie": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [127.01533, 37.57166]}},
+{"type": "Feature", "properties": {"name": "진희네", "class": "Location", "form": "point", "address": "서울 송파구 가락동 600", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/진희네", "theme": "관광", "character": "음식", "district": "송파구", "movie": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [127.11287, 37.49354]}},
+{"type": "Feature", "properties": {"name": "수노래연습장", "class": "Location", "form": "point", "address": "서울 마포구 서교동 364-24 JSJ", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/수노래연습장", "theme": "문화", "character": "문화", "district": "마포구", "movie": "Secrets_du_manga-Seoul_District"}, "geometry": {"type": "Point", "coordinates": [126.92171, 37.55529]}},
+{"type": "Feature", "properties": {"name": "서울특별시청", "class": "Location", "form": "point", "address": "서울 중구 태평로1가 31 서울특별시청", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서울특별시청", "theme": "문화", "character": "국가기관", "district": "중구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [126.97842, 37.56674]}},
+{"type": "Feature", "properties": {"name": "홍익대학교", "class": "Location", "form": "point", "address": "서울 마포구 서교동", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/홍익대학교", "theme": "문화", "character": "교육", "district": "마포구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [126.92441, 37.55258]}},
+{"type": "Feature", "properties": {"name": "에뛰드하우스_홍대점", "class": "Location", "form": "point", "address": "서울 마포구 동교동 163-12", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/에뛰드하우스_홍대점", "theme": "전개", "character": "판매", "district": "마포구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [126.9233, 37.55551]}},
+{"type": "Feature", "properties": {"name": "BK성형외과", "class": "Location", "form": "point", "address": "서울 강남구 논현동 1-2 BK빌딩", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/BK성형외과", "theme": "이동", "character": "의료", "district": "강남구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [127.02042, 37.51619]}},
+{"type": "Feature", "properties": {"name": "진관사", "class": "Location", "form": "point", "address": "서울 은평구 진관동 354 진관사", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/진관사", "theme": "전개", "character": "종교", "district": "은평구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [126.9461, 37.63828]}},
+{"type": "Feature", "properties": {"name": "왕짱구식당", "class": "Location", "form": "point", "address": "서울 종로구 계동 73-7", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/왕짱구식당", "theme": "이동", "character": "음식", "district": "종로구", "movie": "Das_Kochkommando:_Kimchi-Kult"}, "geometry": {"type": "Point", "coordinates": [126.98671, 37.58105]}},
+{"type": "Feature", "properties": {"name": "서대문_형무소_역사관", "class": "Location", "form": "point", "address": "서울 서대문구 현저동 101 서대문형무소역사관", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서대문_형무소_역사관", "theme": "만남", "character": "역사", "district": "서대문구", "movie": "Dak_mo_mai_sing"}, "geometry": {"type": "Point", "coordinates": [126.95632, 37.57453]}},
+{"type": "Feature", "properties": {"name": "서대문_형무소_역사관", "class": "Location", "form": "point", "address": "서울 서대문구 현저동 101 서대문형무소역사관", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서대문_형무소_역사관", "theme": "사건", "character": "역사", "district": "서대문구", "movie": "Dak_mo_mai_sing"}, "geometry": {"type": "Point", "coordinates": [126.95632, 37.57453]}},
+{"type": "Feature", "properties": {"name": "서대문_형무소_역사관", "class": "Location", "form": "point", "address": "서울 서대문구 현저동 101 서대문형무소역사관", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서대문_형무소_역사관", "theme": "일상", "character": "역사", "district": "서대문구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.95632, 37.57453]}},
+{"type": "Feature", "properties": {"name": "그랜드_하얏트_서울", "class": "Location", "form": "point", "address": "서울 용산구 한남동 747-7", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/그랜드_하얏트_서울", "theme": "만남", "character": "숙박", "district": "용산구", "movie": "Dak_mo_mai_sing"}, "geometry": {"type": "Point", "coordinates": [126.99765, 37.53959]}},
+{"type": "Feature", "properties": {"name": "회현시민아파트", "class": "Location", "form": "point", "address": "서울 중구 회현동1가 147-23", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/회현시민아파트", "theme": "사건", "character": "주거", "district": "중구", "movie": "Jing_tian_da_ni_zhuan"}, "geometry": {"type": "Point", "coordinates": [126.98107, 37.55563]}},
+{"type": "Feature", "properties": {"name": "광화문", "class": "Location", "form": "point", "address": "서울 종로구 세종로 1-57 국립고궁박물관", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/광화문", "theme": "이동", "character": "역사", "district": "종로구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.9769026, 37.5716162]}},
+{"type": "Feature", "properties": {"name": "광화문", "class": "Location", "form": "point", "address": "서울 종로구 세종로 1-57 국립고궁박물관", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/광화문", "theme": "(다큐의)대상", "character": "역사", "district": "종로구", "movie": "Voyage_à_Séoul_à_l occasion_d une_rétrospective_des_films_de_Philippe_Garrel"}, "geometry": {"type": "Point", "coordinates": [126.9769026, 37.5716162]}},
+{"type": "Feature", "properties": {"name": "서울스퀘어", "class": "Location", "form": "point", "address": "서울 중구 남대문로5가 541", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서울스퀘어", "theme": "이동", "character": "문화", "district": "중구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.97373, 37.55547]}},
+{"type": "Feature", "properties": {"name": "숭례문", "class": "Location", "form": "point", "address": "서울 중구 남대문로4가 29", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/숭례문", "theme": "이동", "character": "역사", "district": "중구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.97535, 37.56]}},
+{"type": "Feature", "properties": {"name": "남대문경찰서", "class": "Location", "form": "point", "address": "서울 중구 남대문로5가 561", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/남대문경찰서", "theme": "전개", "character": "국가기관", "district": "중구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.9739084, 37.5540696]}},
+{"type": "Feature", "properties": {"name": "남대문경찰서", "class": "Location", "form": "point", "address": "서울 중구 남대문로5가 561", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/남대문경찰서", "theme": "사건", "character": "국가기관", "district": "중구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.9739084, 37.5540696]}},
+{"type": "Feature", "properties": {"name": "독립문", "class": "Location", "form": "point", "address": "서울 서대문구 현저동 941", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/독립문", "theme": "이별", "character": "역사", "district": "서대문구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.9578361, 37.5745584]}},
+{"type": "Feature", "properties": {"name": "경훈종합상사", "class": "Location", "form": "point", "address": "서울 종로구 장사동 204-1", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/경훈종합상사", "theme": "이동", "character": "거리_골목", "district": "종로구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.994, 37.56945]}},
+{"type": "Feature", "properties": {"name": "서울한방진흥센터", "class": "Location", "form": "point", "address": "서울 동대문구 제기동 1082", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서울한방진흥센터", "theme": "일상", "character": "문화", "district": "동대문구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [127.03766, 37.5806]}},
+{"type": "Feature", "properties": {"name": "서울한방진흥센터", "class": "Location", "form": "point", "address": "서울 동대문구 제기동 1082", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서울한방진흥센터", "theme": "일상", "character": "문화", "district": "동대문구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [127.03766, 37.5806]}},
+{"type": "Feature", "properties": {"name": "에스이웍스", "class": "Location", "form": "point", "address": "서울 강남구 삼성동 159-1", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/에스이웍스", "theme": "전개", "character": "업무", "district": "강남구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [127.06103, 37.51033]}},
+{"type": "Feature", "properties": {"name": "국립현대미술관", "class": "Location", "form": "point", "address": "서울 종로구 삼청로 30", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/국립현대미술관", "theme": "(다큐의)대상", "character": "문화", "district": "종로구", "movie": "Voyage_à_Séoul_à_l occasion_d une_rétrospective_des_films_de_Philippe_Garrel"}, "geometry": {"type": "Point", "coordinates": [126.9807378, 37.5797304]}},
+{"type": "Feature", "properties": {"name": "북촌", "class": "Location", "form": "point", "address": "서울 종로구 계동길 37", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/북촌", "theme": "(다큐의)대상", "character": "역사", "district": "종로구", "movie": "Voyage_à_Séoul_à_l occasion_d une_rétrospective_des_films_de_Philippe_Garrel"}, "geometry": {"type": "Point", "coordinates": [126.9848207, 37.5793644]}},
+{"type": "Feature", "properties": {"name": "국립고궁박물관", "class": "Location", "form": "point", "address": "서울 종로구 효자로 12 국립고궁박물관", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/국립고궁박물관", "theme": "(다큐의)대상", "character": "문화", "district": "종로구", "movie": "Voyage_à_Séoul_à_l occasion_d une_rétrospective_des_films_de_Philippe_Garrel"}, "geometry": {"type": "Point", "coordinates": [126.97487, 37.57656]}},
+{"type": "Feature", "properties": {"name": "언주역", "class": "Location", "form": "point", "address": "서울특별시 강남구 봉은사로 201", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/언주역", "theme": "이동", "character": "교통", "district": "강남구", "movie": "More_Than_a_Game_sOs"}, "geometry": {"type": "Point", "coordinates": [127.03389, 37.50732]}},
+{"type": "Feature", "properties": {"name": "롯데월드", "class": "Location", "form": "point", "address": "서울 송파구 올림픽로 240", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/롯데월드", "theme": "가족", "character": "관광_휴게", "district": "송파구", "movie": "Unconditional_Love_-_AirAsiaPH"}, "geometry": {"type": "Point", "coordinates": [127.09819, 37.51117]}},
+{"type": "Feature", "properties": {"name": "석촌호수", "class": "Location", "form": "point", "address": "null", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/석촌호수", "theme": "가족", "character": "관광_휴게", "district": "송파구", "movie": "Unconditional_Love_-_AirAsiaPH"}, "geometry": {"type": "Point", "coordinates": [127.10297, 37.50988]}},
+{"type": "Feature", "properties": {"name": "예술의_전당", "class": "Location", "form": "point", "address": "서울 서초구 남부순환로 2406", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/예술의_전당", "theme": "(다큐의)대상", "character": "문화", "district": "서초구", "movie": "Spelen_voor_het_verleden"}, "geometry": {"type": "Point", "coordinates": [127.012476, 37.4788574]}},
+{"type": "Feature", "properties": {"name": "두산아트센터", "class": "Location", "form": "point", "address": "서울 종로구 종로33길 15", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/두산아트센터", "theme": "강연", "character": "문화", "district": "종로구", "movie": "Müdigkeitsgesellschaft:Byung-Chul_Han_in_Seoul_Berlin"}, "geometry": {"type": "Point", "coordinates": [127.001, 37.57184]}},
+{"type": "Feature", "properties": {"name": "문학과지성사", "class": "Location", "form": "point", "address": "서울 마포구 잔다리로7길 18 문지빌딩", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/문학과지성사", "theme": "전개", "character": "문화", "district": "마포구", "movie": "Müdigkeitsgesellschaft:Byung-Chul_Han_in_Seoul_Berlin"}, "geometry": {"type": "Point", "coordinates": [126.91658, 37.55293]}},
+{"type": "Feature", "properties": {"name": "대한사회복지회", "class": "Location", "form": "point", "address": "서울 강남구 논현로86길 21 대한사회복지회", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/대한사회복지회", "theme": "전개", "character": "업무", "district": "강남구", "movie": "Going_Home"}, "geometry": {"type": "Point", "coordinates": [127.03842, 37.49963]}},
+{"type": "Feature", "properties": {"name": "인왕사", "class": "Location", "form": "point", "address": "서울 종로구 통일로18가길 34", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/인왕사", "theme": "관광", "character": "종교", "district": "종로구", "movie": "Going_Home"}, "geometry": {"type": "Point", "coordinates": [126.95974, 37.57865]}},
+{"type": "Feature", "properties": {"name": "회현역", "class": "Location", "form": "point", "address": "서울 중구 퇴계로 54", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/회현역", "theme": "이동", "character": "교통", "district": "중구", "movie": "Los_Títeres_de_Belial"}, "geometry": {"type": "Point", "coordinates": [126.9796, 37.5593]}},
+
+
+
+];  
+
+
+
+      
+            L.geoJson(geodata, {
+                onEachFeature: function (feature, layer) {
+                            layer.bindPopup('<a href="' + feature.properties.url + '" target="_blank"><center><big><b>' + "[" + feature.properties.character + "]" +" " + feature.properties.name + '</b></big></a><br/>' + feature.properties.address + '<br/>' + feature.properties.movie + feature.properties.theme)},
+
+                pointToLayer: function(feature, latlng) { 
+                    switch (feature.properties.theme) {
+                                case '관광': return L.marker(latlng, {icon: 관광TIcon}).addTo(part_1);
+                                case '문화': return L.marker(latlng, {icon: 문화TIcon}).addTo(part_2);
+                                case '이동': return L.marker(latlng, {icon: 이동TIcon}).addTo(part_3);
+                                case '전개': return L.marker(latlng, {icon: 전개TIcon}).addTo(part_4);
+                                case '사건': return L.marker(latlng, {icon: 사건TIcon}).addTo(part_5);
+
+                               
+                        }
+                    }
+                });
+
+            
+                var geodata2 =[
+{"type": "Feature", "properties": {"name": "Cafe연남동223-14", "class": "Location", "form": "point", "address": "null", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/Cafe연남동223-14", "theme": "사랑", "character": "음식", "district": "마포구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [126.92384, 37.56521]}},
+{"type": "Feature", "properties": {"name": "방산종합시장", "class": "Location", "form": "point", "address": "서울 중구 을지로33길 18-1", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/방산종합시장", "theme": "관광", "character": "판매", "district": "중구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [127.00079, 37.56845]}},
+{"type": "Feature", "properties": {"name": "파크_하얏트_서울", "class": "Location", "form": "point", "address": "서울 강남구 테헤란로 606", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/파크_하얏트_서울", "theme": "가족", "character": "숙박", "district": "강남구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [127.06412, 37.50866]}},
+{"type": "Feature", "properties": {"name": "라네즈_쇼룸", "class": "Location", "form": "point", "address": "서울특별시 중구 명동8길 8", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/라네즈_쇼룸", "theme": "문화", "character": "문화", "district": "중구", "movie": "To_All_the_Boys:_Always_and_Forever"}, "geometry": {"type": "Point", "coordinates": [126.98444, 37.56337]}},
+{"type": "Feature", "properties": {"name": "세빛둥둥섬", "class": "Location", "form": "point", "address": "서울 서초구 올림픽대로 2085-14", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/세빛둥둥섬", "theme": "전개", "character": "문화", "district": "서초구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [126.99489, 37.51172]}},
+{"type": "Feature", "properties": {"name": "청담대교_북단램프", "class": "Location", "form": "point", "address": "서울 광진구 강변북로 68", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/청담대교_북단램프", "theme": "사건", "character": "교통", "district": "광진구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [127.0659, 37.53071]}},
+{"type": "Feature", "properties": {"name": "MBC사옥", "class": "Location", "form": "point", "address": "서울 마포구 성암로 267", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/MBC사옥", "theme": "사건", "character": "업무", "district": "마포구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [126.89052, 37.58109]}},
+{"type": "Feature", "properties": {"name": "강남운전면허시험장", "class": "Location", "form": "point", "address": "서울 강남구 테헤란로114길 23", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/강남운전면허시험장", "theme": "사건", "character": "자동차관련시설", "district": "강남구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [127.06747, 37.50786]}},
+{"type": "Feature", "properties": {"name": "탄천공영주차장", "class": "Location", "form": "point", "address": "서울 강남구 봉은사로114길 13", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/탄천공영주차장", "theme": "사건", "character": "자동차관련시설", "district": "강남구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [127.06928, 37.51296]}},
+{"type": "Feature", "properties": {"name": "동작대교_분기점", "class": "Location", "form": "point", "address": "null", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/동작대교_분기점", "theme": "사건", "character": "교통", "district": "동작구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [126.97514, 37.5053]}},
+{"type": "Feature", "properties": {"name": "문래창작촌", "class": "Location", "form": "point", "address": "서울 영등포구 도림로128가길 13-8", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/문래창작촌", "theme": "사건", "character": "거리_골목", "district": "영등포구", "movie": "Avengers:_Age_of_Ultron"}, "geometry": {"type": "Point", "coordinates": [126.8976, 37.51434]}},
+{"type": "Feature", "properties": {"name": "가락시장", "class": "Location", "form": "point", "address": "서울 송파구 양재대로 932", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/가락시장", "theme": "전개", "character": "판매", "district": "송파구", "movie": "Downsizing"}, "geometry": {"type": "Point", "coordinates": [127.1089, 37.49276]}},
+{"type": "Feature", "properties": {"name": "코엑스", "class": "Location", "form": "point", "address": "서울 송파구 양재대로 932", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/코엑스", "theme": "전개", "character": "문화", "district": "강남구", "movie": "The_Bourne_Legacy "}, "geometry": {"type": "Point", "coordinates": [127.05938, 37.51188]}},
+{"type": "Feature", "properties": {"name": "류니끄", "class": "Location", "form": "point", "address": "서울 강남구 신사동 520-1", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/류니끄", "theme": "전개", "character": "음식", "district": "강남구", "movie": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [127.02161, 37.52071]}},
+{"type": "Feature", "properties": {"name": "양반댁", "class": "Location", "form": "point", "address": "서울 종로구 인사동길 19-18 양반댁", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/양반댁", "theme": "관광", "character": "음식", "district": "종로구", "movie": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [126.98596, 37.57223]}},
+{"type": "Feature", "properties": {"name": "스파렉스", "class": "Location", "form": "point", "address": "서울 종로구 창신동 328-18", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/스파렉스", "theme": "문화", "character": "문화", "district": "종로구", "movie": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [127.01533, 37.57166]}},
+{"type": "Feature", "properties": {"name": "진희네", "class": "Location", "form": "point", "address": "서울 송파구 가락동 600", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/진희네", "theme": "관광", "character": "음식", "district": "송파구", "movie": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [127.11287, 37.49354]}},
+{"type": "Feature", "properties": {"name": "수노래연습장", "class": "Location", "form": "point", "address": "서울 마포구 서교동 364-24 JSJ", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/수노래연습장", "theme": "문화", "character": "문화", "district": "마포구", "movie": "Secrets_du_manga-Seoul_District"}, "geometry": {"type": "Point", "coordinates": [126.92171, 37.55529]}},
+{"type": "Feature", "properties": {"name": "서울특별시청", "class": "Location", "form": "point", "address": "서울 중구 태평로1가 31 서울특별시청", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서울특별시청", "theme": "문화", "character": "국가기관", "district": "중구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [126.97842, 37.56674]}},
+{"type": "Feature", "properties": {"name": "홍익대학교", "class": "Location", "form": "point", "address": "서울 마포구 서교동", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/홍익대학교", "theme": "문화", "character": "교육", "district": "마포구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [126.92441, 37.55258]}},
+{"type": "Feature", "properties": {"name": "에뛰드하우스_홍대점", "class": "Location", "form": "point", "address": "서울 마포구 동교동 163-12", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/에뛰드하우스_홍대점", "theme": "전개", "character": "판매", "district": "마포구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [126.9233, 37.55551]}},
+{"type": "Feature", "properties": {"name": "BK성형외과", "class": "Location", "form": "point", "address": "서울 강남구 논현동 1-2 BK빌딩", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/BK성형외과", "theme": "이동", "character": "의료", "district": "강남구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [127.02042, 37.51619]}},
+{"type": "Feature", "properties": {"name": "진관사", "class": "Location", "form": "point", "address": "서울 은평구 진관동 354 진관사", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/진관사", "theme": "전개", "character": "종교", "district": "은평구", "movie": "Maboul_de_Seoul"}, "geometry": {"type": "Point", "coordinates": [126.9461, 37.63828]}},
+{"type": "Feature", "properties": {"name": "왕짱구식당", "class": "Location", "form": "point", "address": "서울 종로구 계동 73-7", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/왕짱구식당", "theme": "이동", "character": "음식", "district": "종로구", "movie": "Das_Kochkommando:_Kimchi-Kult"}, "geometry": {"type": "Point", "coordinates": [126.98671, 37.58105]}},
+{"type": "Feature", "properties": {"name": "그랜드_하얏트_서울", "class": "Location", "form": "point", "address": "서울 용산구 한남동 747-7", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/그랜드_하얏트_서울", "theme": "만남", "character": "숙박", "district": "용산구", "movie": "Dak_mo_mai_sing"}, "geometry": {"type": "Point", "coordinates": [126.99765, 37.53959]}},
+{"type": "Feature", "properties": {"name": "회현시민아파트", "class": "Location", "form": "point", "address": "서울 중구 회현동1가 147-23", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/회현시민아파트", "theme": "사건", "character": "주거", "district": "중구", "movie": "Jing_tian_da_ni_zhuan"}, "geometry": {"type": "Point", "coordinates": [126.98107, 37.55563]}},
+{"type": "Feature", "properties": {"name": "서울스퀘어", "class": "Location", "form": "point", "address": "서울 중구 남대문로5가 541", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서울스퀘어", "theme": "이동", "character": "문화", "district": "중구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.97373, 37.55547]}},
+{"type": "Feature", "properties": {"name": "숭례문", "class": "Location", "form": "point", "address": "서울 중구 남대문로4가 29", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/숭례문", "theme": "이동", "character": "역사", "district": "중구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.97535, 37.56]}},
+{"type": "Feature", "properties": {"name": "남대문경찰서", "class": "Location", "form": "point", "address": "서울 중구 남대문로5가 561", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/남대문경찰서", "theme": "전개", "character": "국가기관", "district": "중구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.9739084, 37.5540696]}},
+{"type": "Feature", "properties": {"name": "독립문", "class": "Location", "form": "point", "address": "서울 서대문구 현저동 941", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/독립문", "theme": "이별", "character": "역사", "district": "서대문구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.9578361, 37.5745584]}},
+{"type": "Feature", "properties": {"name": "경훈종합상사", "class": "Location", "form": "point", "address": "서울 종로구 장사동 204-1", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/경훈종합상사", "theme": "이동", "character": "거리_골목", "district": "종로구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.994, 37.56945]}},
+{"type": "Feature", "properties": {"name": "서울한방진흥센터", "class": "Location", "form": "point", "address": "서울 동대문구 제기동 1082", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서울한방진흥센터", "them1e": "일상", "character": "문화", "district": "동대문구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [127.03766, 37.5806]}},
+{"type": "Feature", "properties": {"name": "에스이웍스", "class": "Location", "form": "point", "address": "서울 강남구 삼성동 159-1", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/에스이웍스", "theme": "전개", "character": "업무", "district": "강남구", "movie": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [127.06103, 37.51033]}},
+{"type": "Feature", "properties": {"name": "국립현대미술관", "class": "Location", "form": "point", "address": "서울 종로구 삼청로 30", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/국립현대미술관", "theme": "(다큐의)대상", "character": "문화", "district": "종로구", "movie": "Voyage_à_Séoul_à_l occasion_d une_rétrospective_des_films_de_Philippe_Garrel"}, "geometry": {"type": "Point", "coordinates": [126.9807378, 37.5797304]}},
+{"type": "Feature", "properties": {"name": "북촌", "class": "Location", "form": "point", "address": "서울 종로구 계동길 37", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/북촌", "theme": "(다큐의)대상", "character": "역사", "district": "종로구", "movie": "Voyage_à_Séoul_à_l occasion_d une_rétrospective_des_films_de_Philippe_Garrel"}, "geometry": {"type": "Point", "coordinates": [126.9848207, 37.5793644]}},
+{"type": "Feature", "properties": {"name": "국립고궁박물관", "class": "Location", "form": "point", "address": "서울 종로구 효자로 12 국립고궁박물관", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/국립고궁박물관", "theme": "(다큐의)대상", "character": "문화", "district": "종로구", "movie": "Voyage_à_Séoul_à_l occasion_d une_rétrospective_des_films_de_Philippe_Garrel"}, "geometry": {"type": "Point", "coordinates": [126.97487, 37.57656]}},
+{"type": "Feature", "properties": {"name": "언주역", "class": "Location", "form": "point", "address": "서울특별시 강남구 봉은사로 201", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/언주역", "theme": "이동", "character": "교통", "district": "강남구", "movie": "More_Than_a_Game_sOs"}, "geometry": {"type": "Point", "coordinates": [127.03389, 37.50732]}},
+{"type": "Feature", "properties": {"name": "롯데월드", "class": "Location", "form": "point", "address": "서울 송파구 올림픽로 240", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/롯데월드", "theme": "가족", "character": "관광_휴게", "district": "송파구", "movie": "Unconditional_Love_-_AirAsiaPH"}, "geometry": {"type": "Point", "coordinates": [127.09819, 37.51117]}},
+{"type": "Feature", "properties": {"name": "석촌호수", "class": "Location", "form": "point", "address": "null", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/석촌호수", "theme": "가족", "character": "관광_휴게", "district": "송파구", "movie": "Unconditional_Love_-_AirAsiaPH"}, "geometry": {"type": "Point", "coordinates": [127.10297, 37.50988]}},
+{"type": "Feature", "properties": {"name": "예술의_전당", "class": "Location", "form": "point", "address": "서울 서초구 남부순환로 2406", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/예술의_전당", "theme": "(다큐의)대상", "character": "문화", "district": "서초구", "movie": "Spelen_voor_het_verleden"}, "geometry": {"type": "Point", "coordinates": [127.012476, 37.4788574]}},
+{"type": "Feature", "properties": {"name": "두산아트센터", "class": "Location", "form": "point", "address": "서울 종로구 종로33길 15", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/두산아트센터", "theme": "강연", "character": "문화", "district": "종로구", "movie": "Müdigkeitsgesellschaft:Byung-Chul_Han_in_Seoul_Berlin"}, "geometry": {"type": "Point", "coordinates": [127.001, 37.57184]}},
+{"type": "Feature", "properties": {"name": "문학과지성사", "class": "Location", "form": "point", "address": "서울 마포구 잔다리로7길 18 문지빌딩", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/문학과지성사", "theme": "전개", "character": "문화", "district": "마포구", "movie": "Müdigkeitsgesellschaft:Byung-Chul_Han_in_Seoul_Berlin"}, "geometry": {"type": "Point", "coordinates": [126.91658, 37.55293]}},
+{"type": "Feature", "properties": {"name": "대한사회복지회", "class": "Location", "form": "point", "address": "서울 강남구 논현로86길 21 대한사회복지회", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/대한사회복지회", "theme": "전개", "character": "업무", "district": "강남구", "movie": "Going_Home"}, "geometry": {"type": "Point", "coordinates": [127.03842, 37.49963]}},
+{"type": "Feature", "properties": {"name": "인왕사", "class": "Location", "form": "point", "address": "서울 종로구 통일로18가길 34", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/인왕사", "theme": "관광", "character": "종교", "district": "종로구", "movie": "Going_Home"}, "geometry": {"type": "Point", "coordinates": [126.95974, 37.57865]}},
+{"type": "Feature", "properties": {"name": "회현역", "class": "Location", "form": "point", "address": "서울 중구 퇴계로 54", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/회현역", "theme": "이동", "character": "교통", "district": "중구", "movie": "Los_Títeres_de_Belial"}, "geometry": {"type": "Point", "coordinates": [126.9796, 37.5593]}},
+
+
+
+];  
+
+L.geoJson(geodata2, {
+    onEachFeature: function (feature,layer) {
+        layer.bindPopup('<a href="' + feature.properties.url + '" target="_blank"><center><big><b>' + "[" + feature.properties.character + "]" +" " + feature.properties.name + '</b></big></a><br/>' + feature.properties.address + '<br/>' + feature.properties.movie + feature.properties.theme)},
+            
+            pointToLayer: function(feature, latlng) { 
+                    switch (feature.properties.character) {
+                                case '거리_골목': return L.marker(latlng, {icon: 거리골목CIcon}).addTo(part_11);
+                                case '교통': return L.marker(latlng, {icon: 교통CIcon}).addTo(part_6);
+                                case '문화': return L.marker(latlng, {icon: 문화CIcon}).addTo(part_7);
+                                case '역사': return L.marker(latlng, {icon: 역사CIcon}).addTo(part_12);
+                                case '관광_휴게': return L.marker(latlng, {icon: 관광휴게CIcon}).addTo(part_10);
+                                case '의료': return L.marker(latlng, {icon: 의료CIcon}).addTo(part_14);
+                                case '업무': return L.marker(latlng, {icon: 업무CIcon}).addTo(part_9);
+                                case '판매': return L.marker(latlng, {icon: 판매CIcon}).addTo(part_8);
+                                case '음식': return L.marker(latlng, {icon: 음식CIcon}).addTo(part_13);
+                                
+                        
+    }
+}
+})
+
+            var geodata3=[{"type": "Feature", "properties": {"name": "여의도한강공원", "class": "Location", "form": "point", "address": "서울 영등포구 여의동로 330", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/여의도한강공원", "theme1": "관광","theme2": "사건", "character": "관광_휴게", "district": "영등포구", "movie1": "To_All_the_Boys:_Always_and_Forever", "movie2": "Colossal"}, "geometry": {"type": "Point", "coordinates": [126.9358, 37.5257]}},
+{"type": "Feature", "properties": {"name": "동대문디자인플라자", "class": "Location", "form": "point", "address": "서울 중구 을지로 281", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/동대문디자인플라자", "theme1": "문화","theme2": "전개", "character": "문화", "district": "중구", "movie1": "To_All_the_Boys:_Always_and_Forever", "movie2": "Quinn_Thomas"}, "geometry": {"type": "Point", "coordinates": [127.00981, 37.56701]}},
+{"type": "Feature", "properties": {"name": "광화문", "class": "Location", "form": "point", "address": "서울 종로구 세종로 1-57 국립고궁박물관", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/광화문", "theme1": "이동", "theme2": "(다큐의)대상", "character": "역사", "district": "종로구", "movie1": "Sunshine_Family", "movie2": "Voyage_à_Séoul_à_l occasion_d une_rétrospective_des_films_de_Philippe_Garrel"}, "geometry": {"type": "Point", "coordinates": [126.9769026, 37.5716162]}},
+{"type": "Feature", "properties": {"name": "남대문경찰서", "class": "Location", "form": "point", "address": "서울 중구 남대문로5가 561", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/남대문경찰서", "theme1": "전개", "theme2": "사건", "character": "국가기관", "district": "중구", "movie1": "Sunshine_Family", "movie2": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.9739084, 37.5540696]}},
+
+];
+
+            L.geoJson(geodata3, {
+    onEachFeature: function (feature,layer) {
+        layer.bindPopup('<a href="' + feature.properties.url + '" target="_blank"><center><big><b>' + "[" + feature.properties.character + "]" +" " + feature.properties.name + '</b></big></a><br/>' + feature.properties.address + '<br/>' + feature.properties.movie1 + feature.properties.theme1 + '<br/>' + feature.properties.movie2 + feature.properties.theme2)},
+            
+            pointToLayer: function(feature, latlng) { 
+                    switch (feature.properties.character) {
+                                case '거리_골목': return L.marker(latlng, {icon: 거리골목CIcon}).addTo(part_11);
+                                case '교통': return L.marker(latlng, {icon: 교통CIcon}).addTo(part_6);
+                                case '문화': return L.marker(latlng, {icon: 문화CIcon}).addTo(part_7);
+                                case '역사': return L.marker(latlng, {icon: 역사CIcon}).addTo(part_12);
+                                case '관광_휴게': return L.marker(latlng, {icon: 관광휴게CIcon}).addTo(part_10);
+                                case '의료': return L.marker(latlng, {icon: 의료CIcon}).addTo(part_14);
+                                case '업무': return L.marker(latlng, {icon: 업무CIcon}).addTo(part_9);
+                                case '판매': return L.marker(latlng, {icon: 판매CIcon}).addTo(part_8);
+                                case '음식': return L.marker(latlng, {icon: 음식CIcon}).addTo(part_13);
+                            }
+}
+})
+                var geodata4=[
+                {"type": "Feature", "properties": {"name": "서대문_형무소_역사관", "class": "Location", "form": "point", "address": "서울 서대문구 현저동 101 서대문형무소역사관", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/서대문_형무소_역사관", "theme1": "만남", "theme2": "사건", "theme3": "일상", "character": "역사", "district": "서대문구", "movie1": "Dak_mo_mai_sing", "movie2": "Dak_mo_mai_sing","movie3": "Sunshine_Family"}, "geometry": {"type": "Point", "coordinates": [126.95632, 37.57453]}},
+{"type": "Feature", "properties": {"name": "N서울타워", "class": "Location", "form": "point", "address": "서울 용산구 남산공원길 105", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/N서울타워", "theme1": "그리움", "theme2": "전개", "theme3": "가족", "character": "관광_휴게", "district": "용산구", "movie1": "To_All_the_Boys:_Always_and_Forever", "movie2": "Quinn_Thomas", "movie3": "Unconditional_Love_-_AirAsiaPH"}, "geometry": {"type": "Point", "coordinates": [126.98825, 37.5512]}},
+            ];
+
+            
+            L.geoJson(geodata4, {
+    onEachFeature: function (feature,layer) {
+        layer.bindPopup('<a href="' + feature.properties.url + '" target="_blank"><center><big><b>' + "[" + feature.properties.character + "]" +" " + feature.properties.name + '</b></big></a><br/>' + feature.properties.address + '<br/>' + feature.properties.movie1 + feature.properties.theme1 + '<br/>' + feature.properties.movie2 + feature.properties.theme2+ '<br/>' + feature.properties.movie3 + feature.properties.theme3)},
+            
+            pointToLayer: function(feature, latlng) { 
+                    switch (feature.properties.character) {
+                                case '거리_골목': return L.marker(latlng, {icon: 거리골목CIcon}).addTo(part_11);
+                                case '교통': return L.marker(latlng, {icon: 교통CIcon}).addTo(part_6);
+                                case '문화': return L.marker(latlng, {icon: 문화CIcon}).addTo(part_7);
+                                case '역사': return L.marker(latlng, {icon: 역사CIcon}).addTo(part_12);
+                                case '관광_휴게': return L.marker(latlng, {icon: 관광휴게CIcon}).addTo(part_10);
+                                case '의료': return L.marker(latlng, {icon: 의료CIcon}).addTo(part_14);
+                                case '업무': return L.marker(latlng, {icon: 업무CIcon}).addTo(part_9);
+                                case '판매': return L.marker(latlng, {icon: 판매CIcon}).addTo(part_8);
+                                case '음식': return L.marker(latlng, {icon: 음식CIcon}).addTo(part_13);
+                            }
+}
+})
+
+var geodata5=[
+    {"type": "Feature", "properties": {"name": "강남역", "class": "Location", "form": "point", "address": "서울 강남구 강남대로 396", "url": "http://dh.aks.ac.kr/~jisun/edu/index.php/강남역", "theme1": "전개","theme2": "사건", "theme3": "문화","theme4": "이동","character": "교통", "district": "강남구", "movie1": "Downsizing", "movie2": "The_Bourne_Legacy ","movie3": "Maboul_de_Seoul","movie4": "More_Than_a_Game_sOs"}, "geometry": {"type": "Point", "coordinates": [127.02755, 37.4979]}},
+            ];
+
+            L.geoJson(geodata5, {
+    onEachFeature: function (feature,layer) {
+        layer.bindPopup('<a href="' + feature.properties.url + '" target="_blank"><center><big><b>' + "[" + feature.properties.character + "]" +" " + feature.properties.name + '</b></big></a><br/>' + feature.properties.address + '<br/>' + feature.properties.movie1 + feature.properties.theme1 + '<br/>' + feature.properties.movie2 + feature.properties.theme2+ '<br/>' + feature.properties.movie3 + feature.properties.theme3 +'<br/>' + feature.properties.movie4 + feature.properties.theme4)},
+            
+            pointToLayer: function(feature, latlng) { 
+                    switch (feature.properties.character) {
+                                case '거리_골목': return L.marker(latlng, {icon: 거리골목CIcon}).addTo(part_11);
+                                case '교통': return L.marker(latlng, {icon: 교통CIcon}).addTo(part_6);
+                                case '문화': return L.marker(latlng, {icon: 문화CIcon}).addTo(part_7);
+                                case '역사': return L.marker(latlng, {icon: 역사CIcon}).addTo(part_12);
+                                case '관광_휴게': return L.marker(latlng, {icon: 관광휴게CIcon}).addTo(part_10);
+                                case '의료': return L.marker(latlng, {icon: 의료CIcon}).addTo(part_14);
+                                case '업무': return L.marker(latlng, {icon: 업무CIcon}).addTo(part_9);
+                                case '판매': return L.marker(latlng, {icon: 판매CIcon}).addTo(part_8);
+                                case '음식': return L.marker(latlng, {icon: 음식CIcon}).addTo(part_13);
+                            }
+}
+})
+
+
+
+           
+                var linelatlngs1 = [[37.56366, 126.98211], [37.56416, 126.98633]];
+                var linelatlngs2 = [[37.56366, 126.98211], [37.56416, 126.98633]];
+                var linelatlngs3 = [[37.56366, 126.98211], [37.56416, 126.98633]];
+                var linelatlngs4 = [[37.5291, 126.9295], [37.53716, 126.94227]];
+                var linelatlngs5 = [[37.5044, 127.0246], [37.4979, 127.0276]];
+                var linelatlngs6 = [[37.5044, 127.0246], [37.4979, 127.0276]];
+                var linelatlngs7 = [[37.50697, 127.0566], [37.4979, 127.0276]];
+                var linelatlngs8 = [[37.4853, 126.9821], [37.4979, 127.0276]];
+                var linelatlngs9 = [[37.5554, 126.92357], [37.55437, 126.92257]];
+                var linelatlngs10 = [[37.5554, 126.92357], [37.55437, 126.92257]];
+                var linelatlngs11 = [[37.52309, 126.92649], [37.522, 126.92473]];
+                var linelatlngs12 = [[37.52447, 126.92282], [37.52554, 126.92457]];
+                var linelatlngs13 = [[37.57653, 126.89341], [37.57743, 126.8919]];
+                var linelatlngs14 = [[37.5746, 126.866], [37.5622, 126.8879]];
+                var linelatlngs15 = [[37.48628, 126.89897], [37.4855, 126.90043]];
+                var linelatlngs16 = [[37.55744, 126.90137], [37.5572, 126.90155]];
+                var linelatlngs17 = [[37.60678, 126.96208], [37.607, 126.96224]];
+
+                var polyline = L.polyline(linelatlngs1, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/명동거리" target="_blank"><center><big><b>[거리_골목]명동거리</b></big></a><br/>To_All_the_Boys:_Always_and_Forever관광<br/>Going_Home관광</center>').addTo(part_1);
+                var polyline = L.polyline(linelatlngs1, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/명동거리" target="_blank"><center><big><b>[거리_골목]명동거리</b></big></a><br/>To_All_the_Boys:_Always_and_Forever관광<br/>Going_Home관광</center>').addTo(part_11);
+                var polyline = L.polyline(linelatlngs4, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/마포대교" target="_blank"><center><big><b>[교통]마포대교</b></big></a><br/>Avengers:_Age_of_Ultron사건</center>').addTo(part_5);
+                var polyline = L.polyline(linelatlngs4, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/마포대교" target="_blank"><center><big><b>[교통]마포대교</b></big></a><br/>Avengers:_Age_of_Ultron사건</center>').addTo(part_6);
+                var polyline = L.polyline(linelatlngs5, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/강남대로" target="_blank"><center><big><b>[교통]강남대로</b></big></a><br/>Avengers:_Age_of_Ultron사건</center>').addTo(part_5);
+                var polyline = L.polyline(linelatlngs5, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/강남대로" target="_blank"><center><big><b>[교통]강남대로</b></big></a><br/>Avengers:_Age_of_Ultron사건<br/>Jing_tian_da_ni_zhuan전개</center>').addTo(part_6);
+                var polyline = L.polyline(linelatlngs6, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/강남대로" target="_blank"><center><big><b>[교통]강남대로</b></big></a><br/>Jing_tian_da_ni_zhuan전개</center>').addTo(part_4); 
+                var polyline = L.polyline(linelatlngs7, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/테헤란로" target="_blank"><center><big><b>[교통]테헤란로</b></big></a><br/>The_Bourne_Legacy전개</center>').addTo(part_4); 
+                var polyline = L.polyline(linelatlngs7, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/테헤란로" target="_blank"><center><big><b>[교통]테헤란로</b></big></a><br/>The_Bourne_Legacy전개</center>').addTo(part_6);
+                var polyline = L.polyline(linelatlngs8, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/서초대로" target="_blank"><center><big><b>[교통]서초대로</b></big></a><br/>The_Bourne_Legacy전개</center>').addTo(part_4); 
+                var polyline = L.polyline(linelatlngs8, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/서초대로" target="_blank"><center><big><b>[교통]서초대로</b></big></a><br/>The_Bourne_Legacy전개</center>').addTo(part_6); 
+                var polyline = L.polyline(linelatlngs9, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/홍대걷고싶은거리" target="_blank"><center><big><b>[거리_골목]홍대걷고싶은거리</b></big></a><br/>Maboul_de_Seoul문화</center>').addTo(part_2); 
+                var polyline = L.polyline(linelatlngs9, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/홍대걷고싶은거리" target="_blank"><center><big><b>[거리_골목]홍대걷고싶은거리</b></big></a><br/>Maboul_de_Seoul문화<br/>Das_Kochkommando:_Kimchi-Kult문화</center>').addTo(part_11); 
+                var polyline = L.polyline(linelatlngs10, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/홍대걷고싶은거리" target="_blank"><center><big><b>[거리_골목]홍대걷고싶은거리</b></big></a><br/>Das_Kochkommando:_Kimchi-Kult문화</center>').addTo(part_2); 
+                var polyline = L.polyline(linelatlngs11, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/여의나루로_일대_빌딩" target="_blank"><center><big><b>[업무]여의나루로_일대_빌딩</b></big></a><br/>Colossal전개</center>').addTo(part_4); 
+                var polyline = L.polyline(linelatlngs11, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/여의나루로_일대_빌딩" target="_blank"><center><big><b>[업무]여의나루로_일대_빌딩</b></big></a><br/>Colossal전개</center>').addTo(part_9); 
+                var polyline = L.polyline(linelatlngs12, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/여의대로_일대_빌딩" target="_blank"><center><big><b>[업무]여의대로_일대_빌딩</b></big></a><br/>Colossal사건</center>').addTo(part_5); 
+                var polyline = L.polyline(linelatlngs12, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/여의대로_일대_빌딩" target="_blank"><center><big><b>[업무]여의대로_일대_빌딩</b></big></a><br/>Colossal사건</center>').addTo(part_9);
+                var polyline = L.polyline(linelatlngs13, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/월드컵북로" target="_blank"><center><big><b>[교통]월드컵북로</b></big></a><br/>Jing_tian_da_ni_zhuan사건</center>').addTo(part_5); 
+                var polyline = L.polyline(linelatlngs13, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/월드컵북로" target="_blank"><center><big><b>[교통]월드컵북로</b></big></a><br/>Jing_tian_da_ni_zhuan사건</center>').addTo(part_6); 
+                var polyline = L.polyline(linelatlngs14, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/강변북로_가양대교_난지IC" target="_blank"><center><big><b>[교통]강변북로_가양대교_난지IC</b></big></a><br/>Jing_tian_da_ni_zhuan사건</center>').addTo(part_5); 
+                var polyline = L.polyline(linelatlngs14, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/강변북로_가양대교_난지IC" target="_blank"><center><big><b>[교통]강변북로_가양대교_난지IC</b></big></a><br/>Jing_tian_da_ni_zhuan사건</center>').addTo(part_6); 
+                var polyline = L.polyline(linelatlngs15, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/도림천로_일대" target="_blank"><center><big><b>[교통]도림천로_일대</b></big></a><br/>Push전개</center>').addTo(part_4); 
+                var polyline = L.polyline(linelatlngs15, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/도림천로_일대" target="_blank"><center><big><b>[교통]도림천로_일대</b></big></a><br/>Push전개</center>').addTo(part_6); 
+                var polyline = L.polyline(linelatlngs16, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/망원로_3길" target="_blank"><center><big><b>[거리_골목]망원로_3길</b></big></a><br/>Push전개</center>').addTo(part_4); 
+                var polyline = L.polyline(linelatlngs16, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/망원로_3길" target="_blank"><center><big><b>[거리_골목]망원로_3길</b></big></a><br/>Push전개</center>').addTo(part_11); 
+                var polyline = L.polyline(linelatlngs17, {color: 'green', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/평창1길_41" target="_blank"><center><big><b>[거리_골목]평창1길_41</b></big></a><br/>Sunshine_Family사건</center>').addTo(part_5);
+                var polyline = L.polyline(linelatlngs17, {color: 'yellow', weight:7, opacity:0.6}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/평창1길_41" target="_blank"><center><big><b>[거리_골목]평창1길_41</b></big></a><br/>Sunshine_Family사건</center>').addTo(part_11); 
+
+             
+                var latlngs1 = [[37.5703, 126.99831], [37.56987, 126.99838], [37.57005, 127.00088], [37.57029, 127.00083]];
+                var latlngs2 = [[37.5703, 126.99831], [37.56987, 126.99838], [37.57005, 127.00088], [37.57029, 127.00083]];
+                var latlngs3 = [[37.5703, 126.99831], [37.56987, 126.99838], [37.57005, 127.00088], [37.57029, 127.00083]];
+                var latlngs4 = [[37.5831, 126.9739], [37.5828, 126.98], [37.5761, 126.9793], [37.576, 126.9744]];
+                var latlngs5 = [[37.5831, 126.9739], [37.5828, 126.98], [37.5761, 126.9793], [37.576, 126.9744]];
+                var latlngs6 = [[37.56744, 126.97337], [37.56481, 126.97397], [37.56486, 126.97682], [37.56647, 126.97682]];
+                var latlngs7 = [[37.57526, 126.97675], [37.57033, 126.9768], [37.57029, 126.97702], [37.57523, 126.97699]];
+                var latlngs8 = [[37.57526, 126.97675], [37.57033, 126.9768], [37.57029, 126.97702], [37.57523, 126.97699]];
+                var latlngs9 = [[37.57526, 126.97675], [37.57033, 126.9768], [37.57029, 126.97702], [37.57523, 126.97699]];
+                var latlngs10 = [[37.57526, 126.97675], [37.57033, 126.9768], [37.57029, 126.97702], [37.57523, 126.97699]];
+                var latlngs11 = [[37.53045, 126.91406], [37.53161, 126.91591], [37.53314, 126.91453], [37.53189, 126.91265]];
+                var latlngs12 = [[37.50048, 126.83185], [37.50002, 126.83189], [37.50005, 126.83316], [37.50026, 126.8333]];
+                var latlngs13 = [[37.53491, 126.99244], [37.53447, 126.99251], [37.53458, 126.99559], [37.53508, 126.99533]];
+                var latlngs14 = [[37.51487, 126.93622], [37.51431, 126.93635], [37.51473, 126.93961], [37.51534, 126.93939]];
+
+             
+                var polygon = L.polygon(latlngs1, {color: "blue", weight:15, opacity:0.7}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/광장시장" target="_blank"><center><big><b>[판매]광장시장</b></big></a><br/>To_All_the_Boys:_Always_and_Forever관광<br/>Maboul_de_Seoul관광</center>').addTo(part_1);
+                var polygon = L.polygon(latlngs2, {color: "blue", weight:15, opacity:0.7}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/광장시장" target="_blank"><center><big><b>[판매]광장시장</b></big></a><br/>Quinn_Thomas전개</center>').addTo(part_4);
+                var polygon = L.polygon(latlngs3, {color: "red", weight:15, opacity:0.5}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/광장시장" target="_blank"><center><big><b>[판매]광장시장</b></big></a><br/>To_All_the_Boys:_Always_and_Forever관광<br/>Maboul_de_Seoul관광<br/>Quinn_Thomas전개</center>').addTo(part_8);
+                var polygon = L.polygon(latlngs4, {color: "blue", weight:15, opacity:0.7}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/경복궁" target="_blank"><center><big><b>[역사]경복궁</b></big></a><br/>Exposure_360º문화</center>').addTo(part_2);
+                var polygon = L.polygon(latlngs5, {color: "blue", weight:15, opacity:0.7}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/경복궁" target="_blank"><center><big><b>[역사]경복궁</b></big></a><br/>Spelen_voor_het_verleden관광</center>').addTo(part_1);
+                var polygon = L.polygon(latlngs5, {color: "red", weight:15, opacity:0.5}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/경복궁" target="_blank"><center><big><b>[역사]경복궁</b></big></a><br/>Exposure_360º문화<br/>Spelen_voor_het_verleden관광</center>').addTo(part_12);
+                var polygon = L.polygon(latlngs6, {color: "blue", weight:15, opacity:0.7}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/덕수궁" target="_blank"><center><big><b>[역사]덕수궁</b></big></a><br/>Secrets_du_manga-Seoul_District문화</center>').addTo(part_2);
+                var polygon = L.polygon(latlngs6, {color: "red", weight:15, opacity:0.5}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/덕수궁" target="_blank"><center><big><b>[역사]덕수궁</b></big></a><br/>Secrets_du_manga-Seoul_District문화</center>').addTo(part_12);
+                var polygon = L.polygon(latlngs7, {color: "blue", weight:15, opacity:0.7}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/광화문광장" target="_blank"><center><big><b>[관광_휴게]광화문광장</b></big></a><br/>Maboul_de_Seoul문화</center>').addTo(part_2);
+                var polygon = L.polygon(latlngs8, {color: "red", weight:15, opacity:0.5}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/광화문광장" target="_blank"><center><big><b>[관광_휴게]광화문광장</b></big></a><br/>Maboul_de_Seoul문화<br/>Sunshine_Family이동</center>').addTo(part_10);
+                var polygon = L.polygon(latlngs10, {color: "blue", weight:15, opacity:0.7}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/광화문광장" target="_blank"><center><big><b>[관광_휴게]광화문광장</b></big></a><br/>Sunshine_Family이동</center>').addTo(part_3);
+                var polygon = L.polygon(latlngs13, {color: "blue", weight:15, opacity:0.7}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/이태원거리" target="_blank"><center><big><b>[거리_골목]이태원거리</b></big></a><br/>Maboul_de_Seoul문화</center>').addTo(part_2);
+                var polygon = L.polygon(latlngs13, {color: "red", weight:15, opacity:0.5}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/이태원거리" target="_blank"><center><big><b>[거리_골목]이태원거리</b></big></a><br/>Maboul_de_Seoul문화</center>').addTo(part_11);
+                var polygon = L.polygon(latlngs14, {color: "blue", weight:15, opacity:0.7}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/노량진수산시장" target="_blank"><center><big><b>[판매]노량진수산시장</b></big></a><br/>Maboul_de_Seoul전개</center>').addTo(part_4);
+                var polygon = L.polygon(latlngs14, {color: "red", weight:15, opacity:0.5}).bindPopup('<a href="http://dh.aks.ac.kr/~jisun/edu/index.php/노량진수산시장" target="_blank"><center><big><b>[판매]노량진수산시장</b></big></a><br/>Maboul_de_Seoul전개</center>').addTo(part_8);
+
+                
+
+ 
+
+	    </script> 
+    </body>
+</html>
+
